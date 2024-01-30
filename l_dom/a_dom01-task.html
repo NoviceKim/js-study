@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>클래스 이름 선택 실습</title>
+    </head>
+    <body>
+        <ul>
+            <li class="car ferrari">페라리</li>
+            <li class="car">람보르기니</li>
+            <li class="car">벤츠</li>
+        </ul>
+    </body>
+    <script>
+        // 자동차 중 ferrari만 빨간색 글자로 설정,
+        // 나머지 자동차는 글자 크기를 20xp로 설정(DOM객체.style.fontSize)
+
+        // Array에서 forEach 기능을 가져옴
+        HTMLCollection.prototype.forEach = Array.prototype.forEach;
+
+        // 'car' 클래스를 가진 객체를 전부 가져오고 farrari 클래스 있는지 검사
+        const cars = document.getElementsByClassName("car");
+
+        // 가져온 객체들을 하나하나 순회
+        cars.forEach((car) => {
+            // // 만약 객체가 "ferrari" 클래스를 가지고 있다면
+            // if (car.className.includes("ferrari")) {
+            //     car.style.color = "red";
+            // } else {
+            //     car.style.fontSize = "20px";
+            // }
+
+            // "ferrari"가 classList의 1번 인덱스에 포함되어 있다는 것을 이용한 예시
+            if (car.classList[1]) {
+                car.style.color = "red";
+                // return을 쓴 이유는 여기서 함수 기능을 종료하기 위함
+                return;
+            }
+
+            // if문에 들어가면 return을 만나서 종료되기에, 여기서 else를 쓸 필요가 없음
+            car.style.fontSize = "20px";
+        });
+    </script>
+</html>

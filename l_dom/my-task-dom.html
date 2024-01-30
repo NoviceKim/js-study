@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>DOM 연습용 페이지</title>
+        <style>
+            div > div.area {
+                width: 300px;
+                height: 300px;
+                border: 1px lightblue solid;
+                border-radius: 12px;
+                background-color: aquamarine;
+                margin: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>아래 영역의 크기를 바꾸려면 눌러보세요</h1>
+            <button type="button" id="divbtn">클릭</button>
+            <div class="area"></div>
+        </div>
+    </body>
+    <script>
+        // 버튼 객체의 데이터를 상수에 담음
+        const divButton = document.getElementById("divbtn");
+
+        // div 객체의 데이터도 상수에 담음
+        // 객체의 '0' 이라는 키에 div 태그의 데이터가 들어있기 때문에, 뒤에 [0] 을 붙여준다
+        targetDiv = document.getElementsByClassName("area")[0];
+
+        // onclick 사용 예시
+        // // 버튼을 클릭했을 때 이벤트 발생
+        // divButton.onclick = (e) => {
+        //     // target_div의 width, height를 랜덤으로 설정
+        //     newWidth = `${Math.floor(Math.random() * 300)}px`;
+        //     newHeight = `${Math.floor(Math.random() * 300)}px`;
+
+        //     targetDiv.style.width = newWidth;
+        //     targetDiv.style.height = newHeight;
+
+        //     targetDiv.style.transition = "all 0.8s";
+        // };
+
+        // addEventListener 사용 예시
+        divButton.addEventListener("click", () => {
+            newWidth = `${Math.floor(Math.random() * 300)}px`;
+            newHeight = `${Math.floor(Math.random() * 300)}px`;
+
+            with (targetDiv.style) {
+                width = newWidth;
+                height = newHeight;
+                transition = "all 0.8s";
+            }
+        });
+    </script>
+</html>

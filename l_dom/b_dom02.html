@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>name 속성 선택</title>
+    </head>
+    <body>
+        <!--
+            이 부분처럼 특정 태그에 이름을 붙여줬다면 아래의 script 부분에서
+            document.이름 식으로 해당 객체를 호출해서 쓸 수 있음
+
+            단, 모든 태그가 다 되진 않음
+            form 태그는 되고, div 태그는 안 됨
+            나머지는 확인 필요
+        -->
+        <form action="" name="join">
+            <div>
+                <input
+                    type="text"
+                    name="user-id"
+                    placeholder="아이디"
+                    value="kgh1234"
+                />
+            </div>
+            <div>
+                <input
+                    type="password"
+                    name="user-password"
+                    placeholder="비밀번호"
+                />
+            </div>
+            <div>
+                <label>
+                    <input type="checkbox" name="language" value="c" /> C언어
+                    <input type="checkbox" name="language" value="python" />
+                    파이썬
+                    <input type="checkbox" name="language" value="java" /> JAVA
+                </label>
+            </div>
+        </form>
+    </body>
+    <script>
+        // const [id] = document.getElementsByName("user-id");
+        // const [password] = document.getElementsByName("user-password");
+
+        // 객체에서 특수문자를 포함하거나, 연속되는 프로퍼티에 접근할 때는 [] 로 묶는다
+        // 만약 빈 문자열이 전송되었다면("" == false) if문에 들어가지 않는다
+        if (!document.join["user-id"].value) {
+            console.log("아이디를 입력해주세요");
+        }
+
+        // 비밀번호 검사
+        if (!document.join["user-password"].value) {
+            console.log("비밀번호를 입력해주세요");
+        }
+
+        /*
+            'join'(form 태그) 안의 'language' 라는 이름을 가진 태그를 전부 가져옴
+            이 때 가져온 데이터들은 RadioNodeList 라는 유사 배열 객체의 일종으로, 순회가 가능하다
+        */
+        document.join.language.forEach((language) => {
+            // 위에서 가져온 객체들(checkbox)를 전부 check 한다
+            language.checked = true;
+        });
+    </script>
+</html>

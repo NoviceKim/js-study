@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>객체를 동적으로 생성, 삽입, 삭제</title>
+    </head>
+    <body>
+        <p>DOM 트리에 동적으로 객체를 삽입할 수 있다.</p>
+        <p>
+            createElement("태그명"), appendChild("태그객체"),
+            removeChild("태그객체")
+        </p>
+        <p>위 3개의 메소드를 이용해서 새로운 객체를 생성, 삽입, 삭제한다.</p>
+        <!--
+            a 태그의 href에 아무것도 넣지 않으면 현재 페이지로 이동한다.
+            이 때, 페이지가 새로 열린 것으로 인식되기 때문에, 기존 내용이 전부 조기화된다.
+        -->
+        <a href="" id="create">DIV 생성</a>
+    </body>
+    <script>
+        // 'create' id를 가진 객체(태그)를 상수 a에 할당
+        const a = document.querySelector("#create");
+
+        // 색깔 데이터를 담은 Array를 상수 colors에 할당
+        const colors = new Array(
+            "yellow",
+            "red",
+            "blue",
+            "green",
+            "skyblue",
+            "orange",
+            "pink"
+        );
+
+        // 아래의 함수 내부에서 값을 바꿀 수 있게 하기 위해 globalThis로 선언한다
+        globalThis.number = 0;
+
+        // a 태그를 클릭할 때마다 아래의 이벤트 발생
+        a.onclick = (e) => {
+            // 기존에 있던 이벤트(a 태그의 페이지 이동 기능)를 막아줌
+            e.preventDefault();
+
+            // Math.random() 자체는 0 이상 1 미만의 랜덤한 숫자
+            // i는 무조건 colors의 길이보다 작음 -> 이걸 랜덤한 인덱스로 사용
+            const i = Math.floor(Math.random() * colors.length);
+
+            // createElement를 사용해서 빈 div 객체 생성
+            const newDiv = document.createElement("div");
+
+            // 클릭할 때마다 number의 값이 1씩 증가하도록 함
+            // 먼저 값이 1 증가한 다음에 화면에 표시된다
+            newDiv.innerText = `새로 생성된 DIV${++number} 태그입니다.`;
+
+            // 클릭할 때마다 colors의 i번(랜덤) 인덱스에 있는 색깔을 할당한다
+            newDiv.style.backgroundColor = colors[i];
+
+            // 새롭게 만들어진 div 태그를 클릭할 때 이벤트 발생
+            newDiv.onclick = (e) => {
+                // e.target: 이벤트 객체를 통해 이벤트를 발생시킨 객체를 가져올 수 있다
+                // 이벤트가 발생한 객체의 부모(body 태그)내에서 해당 이벤트 객체를 삭제한다
+                e.target.parentElement.removeChild(e.target);
+            };
+
+            // 위에서 만들어진 div 태그(+ 내용)를 body 태그의 맨 아랫부분에 자식요소로 추가한다(appendChild)
+            document.body.appendChild(newDiv);
+        };
+    </script>
+</html>

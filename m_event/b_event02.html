@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>포커스, 블러 이벤트</title>
+    </head>
+    <body>
+        <form action="" name="info">
+            <input type="text" name="birth" placeholder="생년월일" />
+            <input type="text" name="phone" placeholder="핸드폰 번호" />
+        </form>
+    </body>
+    <script>
+        const birth = document.info.birth;
+        const phone = document.info.phone;
+
+        // 정규 표현식 - 자동으로 객체형태로 담긴다
+        const birthRegex =
+            /^(19[0-9][0-9]|20\d{2}).?(0[1-9]|1[0-2].?(0[1-9]|[1-2][0-9]|3[0-1]))$/;
+    </script>
+</html>

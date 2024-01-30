@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>아이디 속성 선택</title>
+    </head>
+    <body>
+        <h1>아이디 속성 선택</h1>
+        <div id="first">
+            <strong>첫 번째 DIV 입니다.</strong>
+        </div>
+        <div id="second">두 번째 DIV 입니다.</div>
+        <textarea id="third">세 번째 DIV 입니다.</textarea>
+    </body>
+    <script>
+        // 특정 id를 가진 객체를 찾아 각 상수에 할당
+        const first = document.getElementById("first");
+        const second = document.getElementById("second");
+        const third = document.getElementById("third");
+
+        // // 안에 있는 태그와 내용을 전부 가져옴
+        // console.log(first.innerHTML);
+        // // 안에 있는 텍스트만 가져옴
+        // console.log(first.innerText);
+
+        // second.innerHTML = `<strong>${second.innerText}</strong>`;
+        // // second.innerText = `<strong>${second.innerText}</strong>`;
+
+        // value: 사용자가 새롭게 입력한 값을 포함
+        console.log(third.value);
+
+        // innerHTML: 기존에 작성되었던(수정하기 전) 내용만 가져옴
+        console.log(third.innerHTML);
+    </script>
+</html>

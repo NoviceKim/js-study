@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>name 속성 선택 실습</title>
+    </head>
+    <body>
+        <form action="" name="login">
+            <input type="text" name="email" />
+            <input type="password" name="password" />
+            <div>
+                <input type="checkbox" name="save-id" value="" /> 아이디 저장
+            </div>
+        </form>
+    </body>
+    <script>
+        // 이메일과 비밀번호를 유효성 검사진행
+        // 아이디 저장을 처음부터 체크되도록 설정
+
+        /*
+            'login' 이라는 이름을 가진 객체 안에서
+            'email' 이라는 이름의 객체에 value 값이 뭐라도 있는지 검사
+        */
+        if (!document.login.email.value) {
+            // 없으면 경고창 출력
+            console.log("이메일을 입력해주세요");
+        }
+
+        // 비밀번호 검사도 위와 마찬가지로 진행
+        if (!document.login.password.value) {
+            console.log("비밀번호를 입력해주세요");
+        }
+
+        // 'login' 이라는 이름의 객체에서 'save-id' 라는 이름을 가진 객체(태그)를 변수에 저장
+        // 프로퍼티 이름에 특수문자가 포함되었기 때문에 [] 로 묶어준다
+        const saveId = document.login["save-id"];
+
+        // 위 객체의 check를 true로 만들어준다
+        saveId.checked = true;
+    </script>
+</html>

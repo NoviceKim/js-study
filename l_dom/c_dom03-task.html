@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>아이디 속성 선택 실습</title>
+    </head>
+    <body>
+        <h1>아이디 속성 선택 실습</h1>
+        <p id="message"></p>
+    </body>
+    <script>
+        // "안녕하세요" 문구를 굵게 표시해서 p 태그에 넣는다.
+
+        // "message" id를 쓰는 객체를 가져와서 변수에 할당
+        // 하나의 html 문서 안에서 특정 id를 쓰는 객체(태그)는 단 하나만 존재함
+        const message = document.getElementById("message");
+        const text = "안녕하세요";
+
+        // 위에서 가져온 객체(p 태그)안 html(innerHTML)에 아래의 구문을 넣음
+        message.innerHTML = `<strong>${text}</strong>`;
+
+        // innerHTML과 innerText의 차이를 비교하기 위해 따로 출력함
+        // 전자는 안에 있는 태그와 텍스트 모두를, 후자는 텍스트만 출력
+        // console.log(message.innerHTML);
+        // console.log(message.innerText);
+    </script>
+</html>
