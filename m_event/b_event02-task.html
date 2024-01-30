@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>포커스, 블러 이벤트 실습</title>
+        <style>
+            input {
+                outline: none;
+                border: none;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="" name="form">
+            <input
+                type="text"
+                name="name"
+                placeholder="이름"
+                autocomplete="off"
+            />
+            <input
+                type="text"
+                name="age"
+                placeholder="나이"
+                autocomplete="off"
+            />
+        </form>
+    </body>
+    <script>
+        // focus된 input 태그의 테두리는 녹색으로,
+        // blur된 input 태그의 테두리는 빨간색으로 설정
+
+        // 먼저 input 태그(객체)를 전부 가져와서 상수에 할당
+        const inputs = document.querySelectorAll("input[type='text']");
+
+        // 각 객체를 반복문으로 돌려서 addEventListener 실행
+        inputs.forEach((input) => {
+            input.addEventListener("focus", (e) => {
+                e.target.style.border = "1px solid green";
+            });
+
+            input.addEventListener("blur", (e) => {
+                e.target.style.border = "1px solid red";
+            });
+        });
+    </script>
+</html>
