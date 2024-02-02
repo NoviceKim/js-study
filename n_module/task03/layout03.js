@@ -7,6 +7,13 @@ const userLayout = (() => {
 
     users.forEach((user) => {
       text += `<tr><td>${user.name}</td><td>${user.username}</td></tr>`;
+      text += `<ul>`;
+
+      user.posts.forEach((post) => {
+        text += `<li>${post.id}, ${post.title}</li>`;
+      });
+
+      text += `</ul>`;
     });
 
     table.innerHTML = text;
