@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>슬라이드</title>
+    <style>
+      #menu {
+        width: 100px;
+        height: 0;
+        opacity: 0;
+        background-color: brown;
+        transition: all 0.2s;
+      }
+
+      /* ~ : 형제 요소 중 조건을 만족하는 앞, 뒤에 있는 요소 전부 찾음 */
+      /* + : 형제 요소 중 다음에 오는 요소만을 찾음 */
+      #check:checked ~ label {
+        font-weight: bold;
+      }
+
+      #check:checked ~ #menu {
+        height: 100px;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="checkbox" id="check" style="display: none" />
+    <label for="check">대주제</label>
+    <div id="menu">소주제</div>
+  </body>
+</html>
