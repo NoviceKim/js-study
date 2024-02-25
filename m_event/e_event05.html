@@ -16,7 +16,7 @@
 
       div.image {
         cursor: pointer;
-        background-image: url("images/plus.png");
+        background-image: url("images/like.png");
         background-size: 100% 100%;
         background-repeat: no-repeat;
         background-position: center;
@@ -28,7 +28,7 @@
         display: none;
         cursor: pointer;
         position: absolute;
-        background-image: url("images/cancel.png");
+        background-image: url("images/dislike.png");
         background-size: 100% 100%;
         background-repeat: no-repeat;
         background-position: center;
@@ -50,29 +50,51 @@
     <input type="file" id="attach" style="display: none" />
   </body>
   <script>
-    const input = document.getElementById("attach");
-    const thumbnail = document.querySelector("div.image");
-    const cancel = document.querySelector("div.cancel");
+    const input = document.getElementById("attach"); // 파일 불러오기 input
+    const thumbnail = document.querySelector("div.image"); // 기본 이미지
+    const cancel = document.querySelector("div.cancel"); // 취소(삭제) 버튼
 
+    // 라벨 값(input 태그 값)이 바뀔 때마다 발생
     input.addEventListener("change", (e) => {
+      // 타겟 파일을 가져와서 구조분해 할당
       const [file] = e.target.files;
+
+      // 새로운 파일 리더를 변수에 할당
       const reader = new FileReader();
+
+      // 파일 리더로 타겟 파일의 컴퓨터 내 경로를 읽어옴
       reader.readAsDataURL(file);
+
+      // 파일 리더가 이미지 등을 로드하면 발생
       reader.addEventListener("load", (e) => {
+        // 로드한 파일의 결과값(경로)를 변수에 할당
         const path = e.target.result;
+
+        // 취소 버튼 표시
         cancel.style.display = "block";
 
+        // 만약 경로에 image 라는 글자가 표시되어 있을 경우
         if (path.includes("image")) {
+          // 해당 이미지 경로를 추적해서 새로운 썸네일 이미지로 사용
           thumbnail.style.backgroundImage = `url(${path})`;
-        } else {
-          thumbnail.style.backgroundImage = `url('images/attach.png')`;
+        }
+        // 만약 경로에 image가 포함되어 있지 않은 경우(이미지 이외에 다른 걸 가져온 경우)
+        else {
+          // 썸네일 이미지를 특정 이미지로 지정
+          thumbnail.style.backgroundImage = `url('images/dislike.png')`;
         }
       });
     });
 
+    // 취소 버튼 클릭 시
     cancel.addEventListener("click", (e) => {
-      thumbnail.style.backgroundImage = `url('images/plus.png')`;
+      // 썸네일 이미지 기본 이미지로 복귀
+      thumbnail.style.backgroundImage = `url('images/like.png')`;
+
+      // 취소 버튼 숨김
       e.target.style.display = "none";
+
+      // input 경로 비움?
       input.value = "";
     });
   </script>
